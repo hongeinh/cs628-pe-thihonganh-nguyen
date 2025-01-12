@@ -17,3 +17,6 @@ React’s rendering system converts it into HTML and it is displayed in the brow
 ## Output 
 The output is a dynamically-rendered web page displaying the resume.   
 The page includes sections such as the user's name, contact information, education history, and project details. 
+
+
+![Result](../images/PE01-MyResume.png)
