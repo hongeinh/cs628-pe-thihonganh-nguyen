@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+  background-color: #fcfbf2;
+  min-height: 100vh;
+}
+
+.content {
+  padding-top: 80px;
+  padding: 1rem;
+}
+
+.home {
+  max-width: 1200px;
+  margin: 0 auto;
+}
