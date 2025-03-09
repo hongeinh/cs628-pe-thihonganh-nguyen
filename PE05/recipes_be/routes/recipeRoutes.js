@@ -22,20 +22,20 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-    if (!req.body?.name) 
+    if (!req.body?.name)
         res.status(400).json({ message: 'Name is blank' })
-    if (!req.body?.ingredients || req.body.ingredients.length === 0) 
+    if (!req.body?.ingredients || req.body.ingredients.length === 0)
         res.status(400).json({ message: 'Ingredient is blank' })
-    if (!req.body?.instructions) 
+    if (!req.body?.instructions)
         res.status(400).json({ message: 'Instruction is blank' })
     const recipe = new Recipe({
-            name: req.body.name,
-            ingredients: req.body.ingredients,
-            instructions: req.body.instructions,
-            prepTime: req.body?.prepTime || '',
-            cookTime: req.body?.cookTime || '',
-            servings: req.body?.servings || 0,
-        });
+        name: req.body.name,
+        ingredients: req.body.ingredients,
+        instructions: req.body.instructions,
+        prepTime: req.body?.prepTime || '',
+        cookTime: req.body?.cookTime || '',
+        servings: req.body?.servings || 0,
+    });
     try {
         const newRecipe = await recipe.save();
         res.status(201).json(newRecipe);
@@ -49,9 +49,9 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
     try {
         const recipe = await Recipe.findById(req.params.id);
-        if (!recipe) 
+        if (!recipe)
             return res.status(404).json({ message: 'Recipe not found' });
-        
+
         recipe.name = req.body?.name || recipe.name;
         recipe.instructions = req.body?.instructions || recipe.instructions;
         recipe.ingredients = req.body?.ingredients || recipe.ingredients;
@@ -68,9 +68,7 @@ router.put("/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
     try {
-        const recipe = await Recipe.findById(req.params.id);
-        if (!recipe) return res.status(404).json({ message: 'Recipe not found' });
-        await recipe.remove();
+        await Recipe.findByIdAndDelete(req.params.id);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

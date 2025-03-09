@@ -25,7 +25,7 @@ const Home = () => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/api/recipes/${id}`);
+            await axios.delete(`${API_URL}/recipes/${id}`);
             fetchRecipes();
         } catch (error) {
             console.error('Error deleting recipe:', error);
